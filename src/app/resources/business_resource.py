@@ -35,3 +35,17 @@ class Business_resource(object):
 
     def get_avg_amounts_by_cpt(self, hcpcs_code):
         return self.hcpcs_code_dao.get_avg_amounts_by_cpt(hcpcs_code)
+
+
+    def create_database(self):
+        from .database import SqlConnector
+        message = 'Database created!'
+        try:
+            sql = SqlConnector()
+            sql._connect_and_create()
+
+            return message
+        except Exception:
+            message = 'Error creating database!'
+
+        return message

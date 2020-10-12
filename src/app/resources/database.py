@@ -1,17 +1,15 @@
-import csv
-import sqlite3
-
+import csv, sqlite3
 from sqlite3 import Error
 
-DATABASE_NAME = 'science.db'
-FILE_NAME = 'file.csv'
+from .. import constants as cons
+
 
 class SqlConnector(object):
 
 
     def get_sql_connection(self):
         try:
-            con = sqlite3.connect(DATABASE_NAME)
+            con = sqlite3.connect(cons.DATABASE_NAME)
             return con
         except Error as e:
             raise Exception(e)
@@ -70,7 +68,7 @@ class SqlConnector(object):
 
     def _populate_medicare(self, con):
 
-        with open('file.csv', 'r') as file:
+        with open(cons.FILE_NAME, 'r') as file:
             dr = csv.DictReader(file)
 
             medicares = [(
