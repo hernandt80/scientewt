@@ -3,7 +3,7 @@
 ### Endpoints details:
 
 :octocat: Get Top Payers By Hcpcs Code
-GET /api/v1/top_payer_states/{hcpcs_code}
+- GET /api/v1/top_payer_states/{hcpcs_code}
 
 :octocat: Get Hcpcs Code By Services
 GET /api/v1/top_hcpcs_code_services/
