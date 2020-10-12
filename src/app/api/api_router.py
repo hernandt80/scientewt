@@ -6,13 +6,6 @@ router = APIRouter()
 resource = Business_resource()
 
 
-
-#TODO cpt con mas npi (que mas esta cubierto, no se si conviene meterte a dar el mismo servicio) -> cpt, agrupado por npis y numero de servicios (sumados) EL TOP 10 de eso
-@router.get("/api/v1/top_covered_hcps/")
-async def get_top_covered_hcps():
-    return resource.get_top_covered_hcps()
-
-
 #TODO cpt que no es cubierto por algun estado (onda: andate a AK a cubrir el CPT XXX poruqe nadie lo da)
 @router.get("/api/v1/top_payer_states/{hcpcs_code}")
 async def get_top_payers_by_hcpcs_code(hcpcs_code: str):

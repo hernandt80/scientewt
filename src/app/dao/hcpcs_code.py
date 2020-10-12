@@ -21,10 +21,4 @@ class HcpcsDAO(BaseDAO):
         return self._excecute_query(query)
 
 
-    def get_top_covered_hcps(self):
-        query = """
-        """
-        return self._excecute_query(query)
-
-
 hcpcs_code_dao = HcpcsDAO()

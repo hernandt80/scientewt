@@ -15,16 +15,13 @@ class Business_resource(object):
         self.provider_state_dao = provider_state_dao
 
 
+
     def get_hcpcs_code_by_services(self):
         return self.hcpcs_code_dao.get_hcpcs_code_by_services()
 
 
     def get_more_profitable_hcpcs(self):
         return self.hcpcs_code_dao.get_more_profitable_hcpcs()
-
-
-    def get_top_covered_hcps(self):
-        return self.hcpcs_code_dao.get_top_covered_hcps()
 
 
     def get_top_payers_by_hcpcs_code(self,hcpcs_code):
