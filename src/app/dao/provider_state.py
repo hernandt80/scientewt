@@ -34,7 +34,7 @@ class ProviderStateDAO(BaseDAO):
 
 
     def get_best_payer_states_by_hcpcs_code(self, hcpcs_code):
-        query = f"""select p.prvider_state, AVG(m.avg_medicare_payment) 
+        query = f"""select p.prvider_state, AVG(m.avg_medicare_allowed) 
                       from medicares m 
                       inner join providers p on p.npi = m.npi 
                       where m.hcpcs_code = {hcpcs_code}
