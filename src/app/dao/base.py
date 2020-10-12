@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from src.app.resources.database import SqlConnector
-from src.app import constants as cons
+from ..resources.database import SqlConnector
+from .. import constants as cons
 
 class BaseDAO(object):
 

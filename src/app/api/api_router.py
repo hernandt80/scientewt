@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.app.resources.business_resource import Business_resource
+from ..resources.business_resource import Business_resource
 
 router = APIRouter()
 resource = Business_resource()

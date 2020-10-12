@@ -1,4 +1,4 @@
-from src.app.dao.base import BaseDAO
+from ..dao.base import BaseDAO
 
 
 class ProviderStateDAO(BaseDAO):
