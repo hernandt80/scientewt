@@ -1,5 +1,6 @@
 import csv, rbql
 from datetime import datetime
+from decimal import Decimal
 
 from .. import constants as cons
 from ..dao.base import BaseDAO
@@ -26,36 +27,51 @@ class HcpcsDAO(BaseDAO):
 
 
     def get_avg_amounts_by_cpt(self, hcpcs_code):
-
         start = datetime.now()
+        try:
+            query = f'select ' \
+                    f'AVG({cm.get("avg_medicare_payment")}), ' \
+                    f'AVG({cm.get("avg_medicare_allowed")}), ' \
+                    f'AVG({cm.get("avg_submitted_charge")}), ' \
+                    f'{cm.get("prvider_state")} ' \
+                    f'where {cm.get("hcpcs_code")} == \'{hcpcs_code}\' ' \
+                    f'group by {cm.get("prvider_state")} '
 
-        query = f'''select '
-                f'AVG({cm.get("avg_medicare_payment")}),
-                f'AVG({cm.get("avg_medicare_allowed")}),
-                f'AVG({cm.get("avg_submitted_charge")}),
-                f'{cm.get("prvider_state")} 
-                f'where {cm.get("hcpcs_code")} == \'{hcpcs_code}\'
-                f'group by {cm.get("prvider_state")}'''
+            rbql.query_csv(
+                query_text=query,
+                input_path=cons.FILE_PATH_INPUT,
+                input_delim=',',
+                input_policy='quoted',
+                output_path=cons.FILE_PATH_OUTPUT,
+                output_delim=',',
+                output_policy='quoted',
+                csv_encoding='utf-8',
+                output_warnings=[], skip_headers=True
+            )
+            ends = datetime.now()
 
-        rbql.query_csv(
-            query_text=query,
-            input_path=cons.FILE_PATH_INPUT,
-            input_delim=',',
-            input_policy='quoted',
-            output_path=cons.FILE_PATH_OUTPUT,
-            output_delim=',',
-            output_policy='quoted',
-            csv_encoding='utf-8',
-            output_warnings=[]
-        )
-        ends = datetime.now()
+            with open(cons.FILE_PATH_OUTPUT, newline='') as file:
+                reader = csv.reader(file)
+                result = []
+                for row in reader:
+                    data = {
+                        'avg_medicare_payment': round(Decimal(row[0]),2),
+                        'avg_medicare_allowed': round(Decimal(row[1]),2),
+                        'avg_submitted_charge': round(Decimal(row[2]),2),
+                        'provider_state': row[3],
+                    }
 
-        with open(cons.FILE_PATH_OUTPUT, newline='') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                result = row
+                    result.append(data)
 
-        return self._response_builder(result,ends-start)
+            return {
+                "result": result if result else cons.NO_RESULTS,
+                "time": ends-start
+            }
 
+        except Exception as e:
+            return {
+                "result": cons.ERROR_RESULT,
+                "time": datetime.now()-start
+            }
 
 hcpcs_code_dao = HcpcsDAO()

@@ -48,3 +48,9 @@ async def get_more_reliable_states_by_hcpcs(hcpcs_code: str):
 @router.get("/api/v1/more_profitable_hcpcs/")
 async def get_more_profitable_hcpcs():
     return resource.get_more_profitable_hcpcs()
+
+
+# TODO rbql
+@router.get("/api/v1/avg_amounts_by_cpt/{hcpcs_code}")
+async def get_avg_amounts_by_cpt(hcpcs_code: str):
+    return resource.get_avg_amounts_by_cpt(hcpcs_code=hcpcs_code)
