@@ -1,5 +1,15 @@
 ## science WT
 
+
+### Installation:
+
+1. Clone repo from github using HTTPS or SSH
+2. Install Docker, if you don't already have it
+3. Open a terminal and move into the project's path.
+4. Excecute: docker-compose up -d
+5. Open a browser and access to FastApi url: http://localhost:8002/docs
+
+
 ### Endpoints details:
 
 :octocat: Get Top Payers By Hcpcs Code (states that better pay for a given cpt code)
