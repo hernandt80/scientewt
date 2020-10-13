@@ -5,10 +5,10 @@ FROM python:3.8.1-alpine
 WORKDIR /usr/src/app
 
 # folders and files creation
-RUN mkdir /usr/files
-RUN chmod 775 /usr/files
-RUN touch /usr/files/science.csv
-RUN chmod 664 /usr/files/science.csv
+RUN mkdir /usr/src/files
+RUN chmod 775 /usr/src/files
+RUN touch /usr/src/files/science.db
+RUN chmod 664 /usr/src/files/science.db
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
