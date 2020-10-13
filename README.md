@@ -9,12 +9,13 @@
 4. Excecute: docker-compose up -d --build
 5. Open a browser and access to FastApi url: http://localhost:8002/docs
 6. Prepare a big cup of coffee... :coffee:
-7. Execute the service in the following order:
-    1. GET ​/api​/v1​/create_database​/ Create Database
-    2. GET ​/api​/v1​/populate_medicare_table​/ Populate Medicare Table
-    3. GET ​/api​/v1​/populate_provider_table​/ Populate Provider Table
+7. Execute the services in the following order:
+    1. GET /api/v1/create_database/ Create Database
+    2. GET /api/v1/populate_medicare_table/ Populate Medicare Table
+    3. GET /api/v1/populate_provider_table/ Populate Provider Table
     
     (This will create database, and populate tables using the Medicare .cvs file)
+    
     (This could take a while... drink your coffee)
 
 
