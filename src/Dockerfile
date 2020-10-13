@@ -29,4 +29,5 @@ RUN set -eux \
 COPY . /usr/src/app/
 
 # download medicare data
-ADD https://data.cms.gov/api/views/fs4p-t5eq/rows.csv?accessType=DOWNLOAD&bom=true&format=true /usr/files/medicare_data.csv
+#ADD https://data.cms.gov/api/views/fs4p-t5eq/rows.csv?accessType=DOWNLOAD&bom=true&format=true /usr/files/medicare_data.csv
+ADD https://data.cms.gov/api/views/fs4p-t5eq/rows.csv?accessType=DOWNLOAD /usr/files/medicare_data.csv

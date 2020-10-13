@@ -19,8 +19,6 @@ class SqlConnector(object):
         con = self.get_sql_connection()
         cursorObj = con.cursor()
 
-        print("creando...")
-
         cursorObj.execute(
             'CREATE TABLE IF NOT EXISTS providers('
             'npi integer PRIMARY KEY, '
@@ -65,11 +63,11 @@ class SqlConnector(object):
     def _populate_medicare_table(self):
         con = self.get_sql_connection()
 
-        with open(cons.FILE_NAME, 'r') as file:
+        with open(cons.FILE_NAME, mode='r', encoding='utf-8-sig') as file:
             dr = csv.DictReader(file)
 
             medicares = [(
-                i['﻿National Provider Identifier'],
+                i['National Provider Identifier'],
                 i['Medicare Participation Indicator'],
                 i['Place of Service'],
                 i['HCPCS Code'],
@@ -107,10 +105,10 @@ class SqlConnector(object):
     def _populate_provider_table(self):
         con = self.get_sql_connection()
 
-        with open(cons.FILE_NAME, 'r') as file:
+        with open(cons.FILE_NAME, mode='r', encoding='utf-8-sig') as file:
             dr = csv.DictReader(file)
 
-            providers = [(i['﻿National Provider Identifier'],
+            providers = [(i['National Provider Identifier'],
                 i['Last Name/Organization Name of the Provider'],
                 i['First Name of the Provider'],
                 i['Middle Initial of the Provider'],
