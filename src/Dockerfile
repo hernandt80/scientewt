@@ -4,6 +4,12 @@ FROM python:3.8.1-alpine
 # set work directory
 WORKDIR /usr/src/app
 
+# folders and files creation
+RUN mkdir /usr/files
+RUN chmod 775 /usr/files
+RUN touch /usr/files/science.csv
+RUN chmod 664 /usr/files/science.csv
+
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -21,3 +27,6 @@ RUN set -eux \
 
 # copy project
 COPY . /usr/src/app/
+
+# download medicare data
+ADD https://data.cms.gov/api/views/fs4p-t5eq/rows.csv?accessType=DOWNLOAD&bom=true&format=true /usr/files/medicare_data.csv

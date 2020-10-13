@@ -1,5 +1,6 @@
 from ..dao.hcpcs_code import hcpcs_code_dao
 from ..dao.provider_state import provider_state_dao
+from .database import SqlConnector
 
 
 class Business_resource(object):
@@ -38,14 +39,10 @@ class Business_resource(object):
 
 
     def create_database(self):
-        from .database import SqlConnector
-        message = 'Database created!'
         try:
             sql = SqlConnector()
             sql._connect_and_create()
+            return 'Database created!'
 
-            return message
-        except Exception:
-            message = 'Error creating database!'
-
-        return message
+        except Exception as e:
+            return f'Error creating database! {e}'

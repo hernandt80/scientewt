@@ -149,8 +149,3 @@ class SqlConnector(object):
 
         con.commit()
         con.close()
-
-
-if __name__ == "__main__":
-    sql = SqlConnector()
-    sql._connect_and_create()

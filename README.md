@@ -6,8 +6,12 @@
 1. Clone repo from github using HTTPS or SSH
 2. Install Docker, if you don't already have it
 3. Open a terminal and move into the project's path.
-4. Excecute: docker-compose up -d
+4. Excecute: docker-compose up -d --build
 5. Open a browser and access to FastApi url: http://localhost:8002/docs
+6. Execute the service:  
+    GET ​/api​/v1​/create_database​/ Create Database
+    
+    (This will create database, and populate tables using the Medicare .cvs file)
 
 
 ### Endpoints details:
@@ -32,3 +36,11 @@
 
 :octocat: Get Avg Amounts By Cpt (using RBQL proccesing .cvs file)
 - GET /api/v1/avg_amounts_by_cpt/{hcpcs_code}
+
+
+### TODO list
+
+- Add JWT to endpoints
+- Add SQLAlchemy (or any other ORM)
+- Update plain queries using model Objects
+- Add logging to API (logger)
