@@ -17,13 +17,9 @@ class SqlConnector(object):
 
     def _connect_and_create(self):
         con = self.get_sql_connection()
-        self._create_sql_tables(con)
-        self._populate_medicare(con)
-        self._populate_providers(con)
-
-
-    def _create_sql_tables(self, con):
         cursorObj = con.cursor()
+
+        print("creando...")
 
         cursorObj.execute(
             'CREATE TABLE IF NOT EXISTS providers('
@@ -66,7 +62,8 @@ class SqlConnector(object):
         con.commit()
 
 
-    def _populate_medicare(self, con):
+    def _populate_medicare_table(self):
+        con = self.get_sql_connection()
 
         with open(cons.FILE_NAME, 'r') as file:
             dr = csv.DictReader(file)
@@ -107,9 +104,10 @@ class SqlConnector(object):
         con.close()
 
 
-    def _populate_providers(self, con):
+    def _populate_provider_table(self):
+        con = self.get_sql_connection()
 
-        with open('file.csv', 'r') as file:
+        with open(cons.FILE_NAME, 'r') as file:
             dr = csv.DictReader(file)
 
             providers = [(i['﻿National Provider Identifier'],

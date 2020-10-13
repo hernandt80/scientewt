@@ -49,3 +49,13 @@ async def get_avg_amounts_by_cpt(hcpcs_code: str):
 @router.get("/api/v1/create_database/")
 async def create_database():
     return resource.create_database()
+
+
+@router.get("/api/v1/populate_medicare_table/")
+async def populate_medicare_table():
+    return resource.populate_medicare_table()
+
+
+@router.get("/api/v1/populate_provider_table/")
+async def populate_provider_table():
+    return resource.populate_provider_table()

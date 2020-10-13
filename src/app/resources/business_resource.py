@@ -46,3 +46,23 @@ class Business_resource(object):
 
         except Exception as e:
             return f'Error creating database! {e}'
+
+
+    def populate_medicare_table(self):
+        try:
+            sql = SqlConnector()
+            sql._populate_medicare_table()
+            return 'Database populated!'
+
+        except Exception as e:
+            return f'Error populating database! {e}'
+
+
+    def populate_provider_table(self):
+        try:
+            sql = SqlConnector()
+            sql._populate_provider_table()
+            return 'Database populated!'
+
+        except Exception as e:
+            return f'Error populating database! {e}'
